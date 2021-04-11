@@ -1,0 +1,11 @@
+#!/usr/bin/env ruby
+# frozen_string_literal: true
+
+require_relative '../config/application'
+
+Goldivore.finalize_application!
+
+require 'pry'
+require 'pry-byebug'
+
+Pry.start
