@@ -6,6 +6,7 @@ module Application
 
     get '/servers', to: Controllers::Servers::Index
     get '/raids', to: Controllers::Raids::Index
+    get '/raids/:raid_id/encounters', to: Controllers::Raids::Encounters::Index
 
     post '/instances', to: Controllers::Instances::Create
   end

@@ -3,8 +3,8 @@
 module Domain
   module Organization
     class Expansion < Dry::Struct
-      attribute :name, ::Domain::Organization::Types::String
-      attribute :raids, ::Domain::Organization::Types::Array.of(Raid)
+      attribute :name, Types::String
+      attribute :raids, Types::Array.of(Raid)
     end
   end
 end
