@@ -6,8 +6,8 @@ module Application
       module Encounters
         class Index < Controller
           include Hanami::Action
-          include Goldivore::Import[encounters: 'domain.organization.encounter_repository']
-          include Goldivore::Import[serializer: 'application.serializers.encounters_serializer']
+          include Domain::Organization::Importer[encounters: 'encounter_repository']
+          include Importer[serializer: 'serializers.encounters_serializer']
 
           def call(_params)
             encounters_for_raid = encounters.for_raid(params[:raid_id])

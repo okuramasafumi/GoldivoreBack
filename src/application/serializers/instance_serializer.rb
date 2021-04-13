@@ -3,8 +3,8 @@
 module Application
   module Serializers
     class InstanceSerializer
-      include Goldivore::Import['application.serializers.raid_serializer']
-      include Goldivore::Import['application.serializers.server_serializer']
+      include Importer['serializers.raid_serializer']
+      include Importer['serializers.server_serializer']
 
       def serialize(instance)
         {

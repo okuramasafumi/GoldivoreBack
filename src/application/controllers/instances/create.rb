@@ -6,8 +6,8 @@ module Application
       class Create < Controller
         include Hanami::Action
 
-        include Goldivore::Import[instances: 'domain.organization.instance_repository']
-        include Goldivore::Import[serializer: 'application.serializers.instance_serializer']
+        include Domain::Organization::Importer[instances: 'instance_repository']
+        include Importer[serializer: 'serializers.instance_serializer']
 
         def call(params)
           instance = instances.create(params.to_h)

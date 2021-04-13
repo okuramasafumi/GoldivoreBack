@@ -5,8 +5,8 @@ module Application
     module Servers
       class Index < Controller
         include Hanami::Action
-        include Goldivore::Import[servers: 'domain.organization.server_repository']
-        include Goldivore::Import[serializer: 'application.serializers.regions_serializer']
+        include Domain::Organization::Importer[servers: 'server_repository']
+        include Importer[serializer: 'serializers.regions_serializer']
 
         def call(_params)
           regions = servers.for_all_regions

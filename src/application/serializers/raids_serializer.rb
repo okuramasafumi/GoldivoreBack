@@ -3,7 +3,7 @@
 module Application
   module Serializers
     class RaidsSerializer
-      include Goldivore::Import['application.serializers.raid_serializer']
+      include Importer['serializers.raid_serializer']
 
       def serialize(raids)
         raids.map do |raid|

@@ -3,7 +3,7 @@
 module Application
   module Serializers
     class EncounterSerializer
-      include Goldivore::Import['application.serializers.items_serializer']
+      include Importer['serializers.items_serializer']
 
       def serialize(encounter)
         {

@@ -5,8 +5,9 @@ module Application
     module Raids
       class Index < Controller
         include Hanami::Action
-        include Goldivore::Import[raids: 'domain.organization.raid_repository']
-        include Goldivore::Import[serializer: 'application.serializers.expansions_serializer']
+
+        include Domain::Organization::Importer[raids: 'raid_repository']
+        include Importer[serializer: 'serializers.expansions_serializer']
 
         def call(_params)
           raid_by_extension = raids.for_all_expansions
