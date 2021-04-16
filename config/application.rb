@@ -10,6 +10,18 @@ require 'dry/monitor'
 require 'pry'
 require 'pry-byebug'
 
+# I don't know where to put this code
+# This class is intended to be injected as a Class, not instance
+require 'alba'
+
+class ExpansionsSerializer
+  include Alba::Resource
+
+  many :raids do
+    attributes :name, :id
+  end
+end
+
 module Goldivore
   class Application < Dry::System::Container
     use :env, inferrer: -> { ENV.fetch('APP_ENV', :development).to_sym }
@@ -27,11 +39,6 @@ module Goldivore
         dir.add_to_load_path = true
       end
 
-      # config.component_dirs.add 'src/application' do |dir|
-      #   dir.auto_register = true
-      #   dir.add_to_load_path = true
-      # end
-      #
       # config.component_dirs.add 'src/domain' do |dir|
       #   dir.auto_register = true
       #   dir.add_to_load_path = true
@@ -47,6 +54,7 @@ module Goldivore
         Dry::Monitor.load_extensions(:rack)
 
         register(:rack_monitor, Dry::Monitor::Rack::Middleware.new(self[:notifications]))
+        register('application.expansions_serializer', ExpansionsSerializer)
         rack_logger = Dry::Monitor::Rack::Logger.new(self[:logger])
         rack_logger.attach(self[:rack_monitor])
       end

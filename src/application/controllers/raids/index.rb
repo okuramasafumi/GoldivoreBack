@@ -7,12 +7,12 @@ module Application
         include Hanami::Action
 
         include Domain::Organization::Importer[raids: 'raid_repository']
-        include Importer[serializer: 'serializers.expansions_serializer']
+        include Importer[serializer: 'expansions_serializer']
 
         def call(_params)
           raid_by_extension = raids.for_all_expansions
 
-          respond_with(serializer.serialize(raid_by_extension))
+          respond_with(serializer.new(raid_by_extension).serialize)
         end
       end
     end
